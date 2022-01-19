@@ -33,6 +33,7 @@ export default function DeleteProduct({ id, children }) {
           deleteProduct().catch((err) => alert(err.message));
         }
       }}
+      style={{ cursor: "pointer" }}
     >
       {children}
     </button>
