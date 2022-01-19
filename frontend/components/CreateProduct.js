@@ -52,7 +52,7 @@ const CreateProduct = () => {
     clearForm();
 
     Router.push({
-      pathname: `/products/${res.data.createProduct.id}`,
+      pathname: `/product/${res.data.createProduct.id}`,
     });
   };
   return (
