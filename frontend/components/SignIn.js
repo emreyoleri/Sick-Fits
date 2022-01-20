@@ -32,6 +32,8 @@ const SignIn = () => {
     variables: inputs,
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
+
+  console.log(loading);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await signin();
@@ -47,7 +49,7 @@ const SignIn = () => {
     <Form method="POST" onSubmit={handleSubmit}>
       <h2>Sign Into Your Account</h2>
       <Error error={error} />
-      <fieldset>
+      <fieldset disabled={loading}>
         <label htmlFor="email">
           Email
           <input
