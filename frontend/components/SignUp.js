@@ -29,11 +29,12 @@ const SignUp = () => {
     variables: inputs,
   });
 
-  console.log(loading);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(inputs);
     const res = await signup().catch(console.error);
     console.log(res);
+    console.log({ data, loading, error });
     resetForm();
   };
 

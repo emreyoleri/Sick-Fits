@@ -4,7 +4,6 @@ export default function paginationField() {
   return {
     keyArgs: false,
     read(existing = [], { args, cache }) {
-      console.log({ existing, args, cache });
       const { skip, first } = args;
 
       const data = cache.readQuery({ query: PAGINATION_QUERY });
@@ -22,9 +21,7 @@ export default function paginationField() {
       }
 
       if (items.length) {
-        console.log(
-          `There are ${items.length} items in the cache! Gonna send them to apollo`
-        );
+       
         return items;
       }
 
@@ -32,12 +29,10 @@ export default function paginationField() {
     },
     merge(existing, incoming, { args }) {
       const { skip, first } = args;
-      console.log(`MErging items from the network ${incoming.length}`);
       const merged = existing ? existing.slice(0) : [];
       for (let i = skip; i < skip + incoming.length; ++i) {
         merged[i] = incoming[i - skip];
       }
-      console.log(merged);
       return merged;
     },
   };

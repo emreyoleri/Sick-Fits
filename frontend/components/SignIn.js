@@ -33,9 +33,9 @@ const SignIn = () => {
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
-  console.log(loading);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(inputs);
     const res = await signin();
     console.log(res);
     resetForm();
