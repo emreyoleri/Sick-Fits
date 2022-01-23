@@ -49,8 +49,6 @@ const SingleProduct = ({ id }) => {
 
   const { Product } = data;
 
-  console.log(Product);
-
   return (
     <ProductStyles>
       <Head>

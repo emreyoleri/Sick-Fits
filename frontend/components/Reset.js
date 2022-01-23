@@ -33,13 +33,9 @@ const Reset = ({ token }) => {
   const successfulError = data?.redeemUserPasswordResetToken?.code
     ? data?.redeemUserPasswordResetToken
     : undefined;
-  console.log(error);
   async function handleSubmit(e) {
     e.preventDefault(); 
-    console.log(inputs);
     const res = await reset().catch(console.error);
-    console.log(res);
-    console.log({ data, loading, error });
     resetForm();
   }
   return (

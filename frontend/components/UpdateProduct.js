@@ -43,7 +43,6 @@ const UpdateProduct = ({ id }) => {
     { data: updateData, error: updateError, loading: updateLoading },
   ] = useMutation(UPDATE_PRODUCT_MUTATION);
 
-  console.log(data);
 
   const { inputs, handleChange, clearForm, resetForm } = useForm(data?.Product);
 
@@ -59,7 +58,6 @@ const UpdateProduct = ({ id }) => {
             price: inputs.price,
           },
         }).catch(console.error);
-        console.log(res);
       }}
     >
       <DisplayError error={error || updateError} />

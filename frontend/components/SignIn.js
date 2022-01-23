@@ -36,9 +36,7 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
     const res = await signin();
-    console.log(res);
     resetForm();
 
     Router.push({

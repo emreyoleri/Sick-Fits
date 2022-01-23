@@ -13,7 +13,7 @@ const REQUEST_RESET_MUTATION = gql`
   }
 `;
 
-const RequestReset = () =>  {
+const RequestReset = () => {
   const { inputs, handleChange, resetForm } = useForm({
     email: "",
   });
@@ -25,10 +25,7 @@ const RequestReset = () =>  {
   );
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(inputs);
     const res = await signup().catch(console.error);
-    console.log(res);
-    console.log({ data, loading, error });
     resetForm();
   }
   return (
@@ -55,5 +52,5 @@ const RequestReset = () =>  {
       </fieldset>
     </Form>
   );
-}
-export default RequestReset
+};
+export default RequestReset;
