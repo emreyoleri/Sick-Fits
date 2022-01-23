@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import Router from "next/router";
 import { useMutation } from "@apollo/client";
 import Form from "./styles/Form";
 import useForm from "../lib/useForm";
@@ -39,6 +40,10 @@ const SignIn = () => {
     const res = await signin();
     console.log(res);
     resetForm();
+
+    Router.push({
+      pathname: `/products`,
+    });
   };
   const error =
     data?.authenticateUserWithPassword.__typename ===
