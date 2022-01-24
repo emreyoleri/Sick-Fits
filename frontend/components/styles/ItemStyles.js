@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const ItemStyles = styled.div`
   background: white;
@@ -26,11 +26,16 @@ const ItemStyles = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     grid-gap: 1px;
     background: var(--lightGray);
+    text-align: center;
     & > * {
       background: white;
       border: 0;
       font-size: 1rem;
       padding: 1rem;
+      cursor: pointer;
+    }
+    & > *:hover {
+      text-decoration: underline;
     }
   }
 `;
