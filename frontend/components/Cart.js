@@ -1,4 +1,3 @@
-import React from "react";
 import calcTotalPrice from "../lib/calcTotalPrice";
 import { useCart } from "../lib/cartState";
 import formatMoney from "../lib/formatMoney";
