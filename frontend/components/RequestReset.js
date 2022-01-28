@@ -23,11 +23,11 @@ const RequestReset = () => {
       variables: inputs,
     }
   );
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await signup().catch(console.error);
     resetForm();
-  }
+  };
   return (
     <Form method="POST" onSubmit={handleSubmit}>
       <h2>Request a Password Reset</h2>

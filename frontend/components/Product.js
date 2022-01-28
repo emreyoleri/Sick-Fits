@@ -6,7 +6,7 @@ import formatMoney from "../lib/formatMoney";
 import DeleteProduct from "./DeleteProduct";
 import AddToCart from "./AddToCart";
 
-export default function Product({ product }) {
+const Product = ({ product }) => {
   return (
     <ItemStyles>
       <img
@@ -34,4 +34,6 @@ export default function Product({ product }) {
       </div>
     </ItemStyles>
   );
-}
+};
+
+export default Product;

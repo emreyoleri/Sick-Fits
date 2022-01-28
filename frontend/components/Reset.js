@@ -33,11 +33,11 @@ const Reset = ({ token }) => {
   const successfulError = data?.redeemUserPasswordResetToken?.code
     ? data?.redeemUserPasswordResetToken
     : undefined;
-  async function handleSubmit(e) {
-    e.preventDefault(); 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const res = await reset().catch(console.error);
     resetForm();
-  }
+  };
   return (
     <Form method="POST" onSubmit={handleSubmit}>
       <h2>Reset Your Password</h2>
