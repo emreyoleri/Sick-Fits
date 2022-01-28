@@ -45,7 +45,7 @@ const CheckoutForm = () => {
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
-  // const router = useRouter();
+   const router = useRouter();
   const { closeCart } = useCart();
   const [checkout, { error: graphQLError }] = useMutation(
     CREATE_ORDER_MUTATION,
@@ -80,12 +80,12 @@ const CheckoutForm = () => {
     console.log(`Finished with the order!!`);
     console.log(order);
 
-    /* router.push({
+    router.push({
       pathname: `/order/[id]`,
       query: {
         id: order.data.checkout.id,
       },
-    }); */
+    });
     closeCart();
 
     setLoading(false);
