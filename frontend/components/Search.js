@@ -84,7 +84,7 @@ const Search = () => {
               highlighted={index === highlightedIndex}
             >
               <img
-                src={item.photo.image.publicUrlTransformed}
+                src={item.photo?.image?.publicUrlTransformed}
                 alt={item.name}
                 width="50"
               />

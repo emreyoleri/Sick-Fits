@@ -66,7 +66,10 @@ const SingleOrderPage = ({ query }) => {
       <div className="items">
         {order.items.map((item) => (
           <div className="order-item" key={item.id}>
-            <img src={item.photo.image.publicUrlTransformed} alt={item.title} />
+            <img
+              src={item.photo?.image?.publicUrlTransformed}
+              alt={item.title}
+            />
             <div className="item-details">
               <h2>{item.name}</h2>
               <p>Qty: {item.quantity}</p>
