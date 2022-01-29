@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import styled from "styled-components";
 import Product from "./Product";
 import { perPage } from "../config";
+import DisplayError from "./ErrorMessage";
 
 export const ALL_PRODUCTS_QUERY = gql`
   query ALL_PRODUCTS_QUERY($skip: Int = 0, $first: Int) {
@@ -37,7 +38,7 @@ const Products = ({ page }) => {
 
   if (loading) return <p>Loading...</p>;
 
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) return <DisplayError error={error} />;
 
   return (
     <div>
