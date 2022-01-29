@@ -20,3 +20,14 @@ export const permission = {
     return session?.data.name.includes("Emre");
   },
 };
+
+export const rules = {
+  canManageProducts({ session }: ListAccessArgs) {
+    if (permission.canManageProducts({ session })) return true;
+    return { user: { id: session.itemId } };
+  },
+  canReadProducts({ session }: ListAccessArgs) {
+    if (permission.canManageProducts({ session })) return true;
+    return { status: "AVAILABLE" };
+  },
+};
