@@ -43,4 +43,10 @@ export const rules = {
     if (permission.canManageProducts({ session })) return true;
     return { status: "AVAILABLE" };
   },
+
+  canManageUsers({ session }: ListAccessArgs) {
+    if (!isSignedIn({ session })) return false;
+    if (permission.canManageUsers({ session })) return true;
+    return { id: session.itemId };
+  },
 };
