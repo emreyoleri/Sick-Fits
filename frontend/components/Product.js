@@ -5,8 +5,13 @@ import PriceTag from "./styles/PriceTag";
 import formatMoney from "../lib/formatMoney";
 import DeleteProduct from "./DeleteProduct";
 import AddToCart from "./AddToCart";
+import { useUser } from "./User";
 
 const Product = ({ product }) => {
+  const user = useUser();
+
+  const myProduct = user?.products?.find((item) => item.id === product.id);
+
   return (
     <ItemStyles>
       <img
@@ -19,18 +24,21 @@ const Product = ({ product }) => {
       <PriceTag>{formatMoney(product.price)}</PriceTag>
       <p>{product.description}</p>
       <div className="buttonList">
-        <Link
-          href={{
-            pathname: "/update",
-            query: {
-              id: product.id,
-            },
-          }}
-        >
-          Edit ✏️
-        </Link>
+        {myProduct && (
+          <Link
+            href={{
+              pathname: "/update",
+              query: {
+                id: product.id,
+              },
+            }}
+          >
+            Edit ✏️
+          </Link>
+        )}
+
         <AddToCart id={product.id} />
-        <DeleteProduct id={product.id}>Delete ❌</DeleteProduct>
+        {myProduct && <DeleteProduct id={product.id}>Delete ❌</DeleteProduct>}
       </div>
     </ItemStyles>
   );

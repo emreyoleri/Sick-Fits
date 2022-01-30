@@ -28,9 +28,13 @@ const ItemStyles = styled.div`
     background: var(--lightGray);
     text-align: center;
     & > * {
+      height: 5.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background: white;
       border: 0;
-      font-size: 1rem;
+      font-size: 1.2rem;
       padding: 1rem;
       cursor: pointer;
     }

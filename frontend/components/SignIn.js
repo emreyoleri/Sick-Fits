@@ -54,16 +54,23 @@ const SignIn = () => {
     const res = await signin();
     resetForm();
 
-    if (!error)
+    const error =
+      data?.authenticateUserWithPassword.__typename ===
+      "UserAuthenticationWithPasswordFailure"
+        ? data?.authenticateUserWithPassword
+        : undefined;
+    if (error) {
       Router.push({
         pathname: `/products`,
       });
+    }
   };
   const error =
     data?.authenticateUserWithPassword.__typename ===
     "UserAuthenticationWithPasswordFailure"
       ? data?.authenticateUserWithPassword
       : undefined;
+
   return (
     <Form method="POST" onSubmit={handleSubmit}>
       <h2>Sign Into Your Account</h2>
