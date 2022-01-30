@@ -37,13 +37,10 @@ export const rules = {
     if (permission.canManageCart({ session })) return true;
     return { order: { user: { id: session.itemId } } };
   },
-
   canReadProducts({ session }: ListAccessArgs) {
-    if (!isSignedIn({ session })) return false;
     if (permission.canManageProducts({ session })) return true;
     return { status: "AVAILABLE" };
   },
-
   canManageUsers({ session }: ListAccessArgs) {
     if (!isSignedIn({ session })) return false;
     if (permission.canManageUsers({ session })) return true;

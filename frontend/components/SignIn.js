@@ -5,6 +5,9 @@ import Form from "./styles/Form";
 import useForm from "../lib/useForm";
 import { CURRENT_USER_QUERY } from "./User";
 import Error from "./ErrorMessage";
+import { ALL_PRODUCTS_QUERY } from "./Products";
+import { perPage } from "../config";
+import { PAGINATION_QUERY } from "./Pagination";
 
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($email: String!, $password: String!) {
@@ -31,7 +34,19 @@ const SignIn = () => {
   });
   const [signin, { data, loading }] = useMutation(SIGNIN_MUTATION, {
     variables: inputs,
-    refetchQueries: [{ query: CURRENT_USER_QUERY }],
+    refetchQueries: [
+      { query: CURRENT_USER_QUERY },
+      {
+        query: ALL_PRODUCTS_QUERY,
+        variables: {
+          skip: 0,
+          first: perPage,
+        },
+      },
+      {
+        query: PAGINATION_QUERY,
+      },
+    ],
   });
 
   const handleSubmit = async (e) => {

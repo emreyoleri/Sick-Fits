@@ -6,7 +6,7 @@ import { isSignedIn } from "../access";
 export const Product = list({
   access: {
     create: isSignedIn,
-    read: rules.canReadProducts,
+    read: rules.canReadProducts, // ()=> true
     update: rules.canManageProducts,
     delete: rules.canManageProducts,
   },
@@ -43,7 +43,7 @@ export const Product = list({
     user: relationship({
       ref: "User.products",
       defaultValue: ({ context }) => ({
-        conntect: { id: context.session.itemId },
+        connect: { id: context.session.itemId },
       }),
     }),
   },
