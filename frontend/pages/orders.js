@@ -6,6 +6,7 @@ import Link from "next/link";
 import DisplayError from "../components/ErrorMessage";
 import formatMoney from "../lib/formatMoney";
 import OrderItemStyles from "../components/styles/OrderItemStyles";
+import SuccessMessage from "../components/SuccessMessage";
 
 const USER_ORDERS_QUERY = gql`
   query USER_ORDERS_QUERY {
@@ -52,7 +53,11 @@ const OrdersPage = () => {
       <Head>
         <title>Your Orders ({allOrders.length})</title>
       </Head>
-      <h2>You have {allOrders.length} orders!</h2>
+      {allOrders.length === 0 ? (
+        <SuccessMessage>You do not have an order yet.</SuccessMessage>
+      ) : (
+        <SuccessMessage>You have {allOrders.length} orders!</SuccessMessage>
+      )}
       <OrderUl>
         {allOrders.map((order) => (
           <OrderItemStyles key={order.id}>
