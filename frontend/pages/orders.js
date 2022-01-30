@@ -8,7 +8,7 @@ import formatMoney from "../lib/formatMoney";
 import OrderItemStyles from "../components/styles/OrderItemStyles";
 import SuccessMessage from "../components/SuccessMessage";
 
-const USER_ORDERS_QUERY = gql`
+export const USER_ORDERS_QUERY = gql`
   query USER_ORDERS_QUERY {
     allOrders {
       id

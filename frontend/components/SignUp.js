@@ -2,8 +2,9 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
 import Form from "./styles/Form";
 import useForm from "../lib/useForm";
-import { CURRENT_USER_QUERY } from "./User";
 import Error from "./ErrorMessage";
+import SuccessMessage from "./SuccessMessage";
+import { SIGNIN_MUTATION } from "./SignIn";
 
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
@@ -27,6 +28,12 @@ const SignUp = () => {
   });
   const [signup, { data, loading, error }] = useMutation(SIGNUP_MUTATION, {
     variables: inputs,
+    refetchQueries: [
+      {
+        query: SIGNIN_MUTATION,
+        variables: { email: inputs.email, password: inputs.password },
+      },
+    ],
   });
 
   const handleSubmit = async (e) => {
@@ -41,9 +48,10 @@ const SignUp = () => {
       <Error error={error} />
       <fieldset disabled={loading}>
         {data?.createUser && (
-          <p>
-            Signed up with {data.createUser.email} - Please Go Head and Sign In
-          </p>
+          <SuccessMessage text="Success!">
+            Signed up and signed in with {data.createUser.email} - You are being
+            redirected to the home page
+          </SuccessMessage>
         )}
         <label htmlFor="email">
           Your Name

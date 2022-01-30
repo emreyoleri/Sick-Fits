@@ -5,6 +5,7 @@ import useForm from "../lib/useForm";
 import Form from "./styles/Form";
 import DisplayError from "./ErrorMessage";
 import { ALL_PRODUCTS_QUERY } from "./Products";
+import { CURRENT_USER_QUERY } from "./User";
 
 const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
@@ -33,16 +34,21 @@ const CREATE_PRODUCT_MUTATION = gql`
 const CreateProduct = () => {
   const { inputs, handleChange, resetForm, clearForm } = useForm({
     image: "",
-    name: "Nice Shoes",
-    price: 34243,
-    description: "These are the best shoes!",
+    name: "",
+    price: 0,
+    description: "",
   });
 
   const [createProduct, { loading, error, data }] = useMutation(
     CREATE_PRODUCT_MUTATION,
     {
       variables: inputs,
-      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
+      refetchQueries: [
+        { query: ALL_PRODUCTS_QUERY },
+        {
+          query: CURRENT_USER_QUERY,
+        },
+      ],
     }
   );
 

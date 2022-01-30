@@ -9,7 +9,7 @@ import { ALL_PRODUCTS_QUERY } from "./Products";
 import { perPage } from "../config";
 import { PAGINATION_QUERY } from "./Pagination";
 
-const SIGNIN_MUTATION = gql`
+export const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($email: String!, $password: String!) {
     authenticateUserWithPassword(email: $email, password: $password) {
       ... on UserAuthenticationWithPasswordSuccess {
