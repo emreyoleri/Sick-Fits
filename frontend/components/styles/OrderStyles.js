@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const OrderStyles = styled.div`
   max-width: 1000px;
@@ -7,6 +7,19 @@ const OrderStyles = styled.div`
   box-shadow: var(--bs);
   padding: 2rem;
   border-top: 10px solid red;
+  & > .OrderStylesPTagLikeDivTag {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    margin: 0;
+    border-bottom: 1px solid var(--offWhite);
+    span {
+      padding: 1rem;
+      &:first-child {
+        font-weight: 900;
+        text-align: right;
+      }
+    }
+  }
   & > p {
     display: grid;
     grid-template-columns: 1fr 5fr;

@@ -23,6 +23,27 @@ export const CURRENT_USER_QUERY = gql`
             }
           }
         }
+        password_is_set
+        role {
+          id
+          name
+        }
+        _ordersMeta {
+          count
+        }
+        _productsMeta {
+          count
+        }
+        products {
+          name
+
+          id
+          photo {
+            image {
+              publicUrlTransformed
+            }
+          }
+        }
       }
     }
   }
