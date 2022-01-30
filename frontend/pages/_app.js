@@ -6,6 +6,8 @@ import Page from "../components/Page";
 import withData from "../lib/withData";
 
 import "../components/styles/nprogress.css";
+import "../node_modules/react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
 import { CartStateProvider } from "../lib/cartState";
 
 Router.events.on("routeChangeStart", () => NProgress.start());

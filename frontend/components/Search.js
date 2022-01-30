@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import debounce from "lodash.debounce";
 import { useRouter } from "next/dist/client/router";
 import styled from "styled-components";
+import DisplayError from "./ErrorMessage";
 import { DropDown, DropDownItem, SearchStyles } from "./styles/DropDown";
 
 const SearchInputStyles = styled.input`
@@ -41,7 +42,7 @@ const Search = () => {
     }
   );
 
-  if (error) console.log(error);
+  if (error) <DisplayError error={error} />;
   const items = data?.searchTerms || [];
   const findItemsButChill = debounce(findItems, 350);
   resetIdCounter();

@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useQuery } from "@apollo/client";
 import DisplayError from "./ErrorMessage";
 import styled from "styled-components";
+import Loading from "./Loading";
 
 const ProductStyles = styled.div`
   display: grid;
@@ -43,7 +44,7 @@ const SingleProduct = ({ id }) => {
     },
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
 
   if (error) return <DisplayError error={error} />;
 

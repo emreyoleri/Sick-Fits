@@ -7,6 +7,7 @@ import DisplayError from "../components/ErrorMessage";
 import formatMoney from "../lib/formatMoney";
 import OrderItemStyles from "../components/styles/OrderItemStyles";
 import SuccessMessage from "../components/SuccessMessage";
+import Loading from "../components/Loading";
 
 export const USER_ORDERS_QUERY = gql`
   query USER_ORDERS_QUERY {
@@ -45,7 +46,7 @@ const countItemsInAnOrder = (order) => {
 
 const OrdersPage = () => {
   const { data, error, loading } = useQuery(USER_ORDERS_QUERY);
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <DisplayError error={error} />;
   const { allOrders } = data;
   return (
