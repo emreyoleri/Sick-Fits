@@ -4,12 +4,13 @@ import {
   OwnedProductsDivStyles,
   OwnedProductsSpanStyles,
 } from "../pages/account";
-import { useUser } from "./User";
+import SignIn from "./SignIn";
 import OrderStyles from "./styles/OrderStyles";
+import { useUser } from "./User";
 
 const Account = () => {
   const user = useUser();
-  // const productIds = user?.products.map((item) => item.id);
+  if (!user) return <SignIn />;
 
   return (
     <OrderStyles>

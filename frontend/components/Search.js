@@ -3,7 +3,13 @@ import { resetIdCounter, useCombobox } from "downshift";
 import gql from "graphql-tag";
 import debounce from "lodash.debounce";
 import { useRouter } from "next/dist/client/router";
+import styled from "styled-components";
 import { DropDown, DropDownItem, SearchStyles } from "./styles/DropDown";
+
+const SearchInputStyles = styled.input`
+  outline: none;
+  margin-top: 1rem;
+`;
 
 const SEARCH_PRODUCTS_QUERY = gql`
   query SEARCH_PRODUCTS_QUERY($searchTerm: String!) {
@@ -66,7 +72,7 @@ const Search = () => {
   return (
     <SearchStyles>
       <div {...getComboboxProps()}>
-        <input
+        <SearchInputStyles
           {...getInputProps({
             type: "search",
             placeholder: "Search for an Item",

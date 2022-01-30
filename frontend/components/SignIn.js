@@ -54,9 +54,10 @@ const SignIn = () => {
     const res = await signin();
     resetForm();
 
-    Router.push({
-      pathname: `/products`,
-    });
+    if (!error)
+      Router.push({
+        pathname: `/products`,
+      });
   };
   const error =
     data?.authenticateUserWithPassword.__typename ===
