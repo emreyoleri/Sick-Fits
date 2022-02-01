@@ -5,6 +5,7 @@ import useForm from "../lib/useForm";
 import Error from "./ErrorMessage";
 import SuccessMessage from "./SuccessMessage";
 import { SIGNIN_MUTATION } from "./SignIn";
+import { CURRENT_USER_QUERY } from "./User";
 
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
@@ -28,25 +29,30 @@ const SignUp = () => {
   });
   const [signup, { data, loading, error }] = useMutation(SIGNUP_MUTATION, {
     variables: inputs,
-    refetchQueries: [
-      {
-        query: SIGNIN_MUTATION,
-        variables: { email: inputs.email, password: inputs.password },
-      },
-    ],
+  });
+
+  const [
+    signin,
+    { data: signInData, loading: signInLoading, error: signInError },
+  ] = useMutation(SIGNIN_MUTATION, {
+    variables: { email: inputs.email, password: inputs.password },
+    refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await signup().catch(console.error);
-    resetForm();
+    if (res?.data?.createUser) {
+      await signin().catch(console.error);
+      resetForm();
+    }
   };
 
   return (
     <Form method="POST" onSubmit={handleSubmit}>
       <h2>Sign Up For an Account</h2>
-      <Error error={error} />
-      <fieldset disabled={loading}>
+      <Error error={error || signInError} />
+      <fieldset disabled={loading || signInLoading}>
         {data?.createUser && (
           <SuccessMessage text="Success!">
             Signed up and signed in with {data.createUser.email} - You are being
@@ -87,7 +93,7 @@ const SignUp = () => {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">Sign In!</button>
+        <button type="submit">Sign Up!</button>
       </fieldset>
     </Form>
   );
